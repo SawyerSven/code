@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="./index.js"></script>
+    <script>
+      let stack = new Stack();
+
+      /* 入栈 */
+      console.log('first data', '进栈');
+      stack.push('first data');
+      stack.print();
+      console.log('second data', '进栈');
+      stack.push('second data');
+      stack.print();
+      console.log('third data', '进栈');
+      stack.push('third data');
+      stack.print();
+
+      /* 查看栈顶元素 */
+      console.log('栈顶元素应为"third data"', stack.peek);
+
+      /* 查看栈内元素总数 */
+      console.log('栈内元素总数应为3', stack.size);
+
+      /* 出栈 */
+      console.log('third data', '出栈');
+      stack.pop();
+
+      /* 查看栈顶元素 */
+      console.log('栈顶元素应为"second data"', stack.peek);
+
+      /* 查看栈内元素总数 */
+      console.log('栈内元素总数应为2', stack.size);
+
+      /* 判断栈是否为空 */
+      console.log('不应为空', stack.isEmpty);
+
+      /* 打印栈内数据 */
+      stack.print();
+
+      /* 清空栈 */
+      stack.clear();
+
+      /* 判断栈是否为空 */
+      console.log('应为空', stack.isEmpty);
+    </script>
+  </body>
+</html>

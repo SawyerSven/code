@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <a href="https://leetcode-cn.com/problems/valid-parentheses/">leetCode20</a>
+    <a href="https://leetcode-cn.com/problems/min-stack/">leetCode 155</a>
+  </head>
+  <body>
+    <script src="../index.js"></script>
+    <!-- <script>
+      // leetCode20
+      // 用例
+
+      /**
+       * * 解题思路：
+       * *成对括号有如下特点：
+       * * 1. 字符串长度必为偶数
+       * * 2. 如果是并列关系的括号,如str1:必将依次成对
+       * * 3. 如果是嵌套关系的括号,如str2:括号必将从最内层到最外层依次成对,也就是说,最内层的一组括号必然是连续成对的。
+       *
+       * * 使用栈结题的思路：
+       * * 从字符串第一位开始判断，如果栈为空，则直接进栈(push)
+       * * 如果栈不为空，判断当前元素是否和栈顶元素(peek)配对
+       * * 如果当前元素和栈顶元素配对，则对栈顶元素进行出栈(pop)操作
+       * * 如果当前元素和栈顶元素不配对，则将该元素压入栈中(push)
+       * * 在遍历操作结束后，如果栈为空(isEmpty)，则证明字符串为成对括号;反之不是成对括号。
+       */
+
+      let str = '[]';
+
+      let str1 = '[]{}()';
+
+      let str2 = '[{}]';
+
+      let str3 = '[{(}]';
+
+      var isValid = function(s) {
+        let stack = [];
+        if (s.length % 2 !== 0) return false;
+        for (let i of s) {
+          if (!stack.length) {
+            stack.push(i);
+          } else {
+            isMatch(stack[stack.length - 1], i) ? stack.pop() : stack.push(i);
+          }
+        }
+        return stack.length === 0;
+      };
+
+      const isMatch = function(c1, c2) {
+        return (
+          (c1 === '(' && c2 === ')') ||
+          (c1 === '[' && c2 === ']') ||
+          (c1 === '{' && c2 === '}')
+        );
+      };
+
+      console.log(isValid(str));
+      console.log(isValid(str1));
+      console.log(isValid(str2));
+      console.log(isValid(str3));
+    </script> -->
+    <script>
+      // leetCode 155 最小栈
+
+      /**
+       * * 解题思路：
+       * * 由于题目要求getMin的时间复杂度为常数
+       * * 所以可以采取利用辅助栈空间换时间的策略
+       * *
+       * * 1：辅助栈与数据栈同步
+       * * 2：辅助栈为空的时候将数据压入主栈的时候同步压入辅助栈
+       * * 3：辅助栈不为空的时候，数据压入主栈的时候，判断当前元素是否小于辅助栈当前栈顶元素(peek)，如果小于栈顶元素，则将当前元素压入辅助栈；否则将当前辅助栈栈顶元素的值再次压入辅助栈
+       * * 4: 主栈出栈的时候辅助栈同步出栈(pop)
+       * * 5: getMin的时候返回辅助栈的栈顶元素(peek)
+       *
+       * * 不同步辅助栈的思路
+       * * 1: 如果当前元素的值小于等于辅助栈栈顶的元素(peek),则入栈,否则不入栈
+       * * 2: 出栈时，如果主栈当前出栈元素和辅助栈出栈元素一致，辅助栈才主栈，否则不出栈
+       *
+       * 时间复杂度：O(n)
+       * 空间复杂度：O(n)
+       */
+
+      class MinStack {
+        constructor() {
+          this.data = [];
+          this.MinStack = [];
+        }
+        /* 入栈 */
+        push(item) {
+          this.data.push(item);
+          if (!this.MinStack.length) {
+            this.MinStack.push(item);
+          } else {
+            if (this.MinStack[this.MinStack.length - 1] > item) {
+              this.MinStack.push(item);
+            } else {
+              this.MinStack.push(this.MinStack[this.MinStack.length - 1]);
+            }
+          }
+        }
+        /* 出栈 */
+        pop() {
+          this.MinStack.pop();
+          return this.data.pop();
+        }
+        /* 查看栈顶元素 */
+        top() {
+          return this.data[this.data.length - 1];
+        }
+        getMin() {
+          return this.MinStack[this.MinStack.length - 1];
+        }
+      }
+
+      let minStack = new MinStack();
+      minStack.push(-2);
+      minStack.push(0);
+      minStack.push(-3);
+      console.log(minStack.getMin());
+      minStack.pop();
+      console.log(minStack.top());
+      console.log(minStack.getMin());
+    </script>
+  </body>
+</html>

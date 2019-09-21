@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>10进制转换2-9任意进制</title>
+
+    <setion>
+      <p>
+        10进制转其他进制本质上是用10进制的值x对要转的进制y做取模操作，将余数push进栈
+      </p>
+      <p>再用x/y的值作为下一次的被除数，最终到x=0并且没有余数则完成进制转换</p>
+    </setion>
+  </head>
+  <body>
+    <script src="index.js"></script>
+    <script>
+      function conversionNumber(num, base) {
+        let stack = new Stack();
+        while (num !== 0) {
+          stack.push(num % base);
+          num = Math.floor(num / base);
+        }
+        let value = '';
+        while (stack.size) {
+          value += stack.pop();
+        }
+        return value;
+      }
+
+      console.log(conversionNumber(73, 2));
+      console.log(conversionNumber(128, 2));
+      console.log(conversionNumber(73, 8));
+      console.log(conversionNumber(73, 16));
+      console.log(conversionNumber(125, 2));
+      console.log(conversionNumber(125, 8));
+    </script>
+  </body>
+</html>

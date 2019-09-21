@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <a href="https://leetcode-cn.com/problems/valid-palindrome/comments/"
+      >leetcode 125</a
+    >
+    <script src="index.js"></script>
+    <script>
+      // const getCharCode = function(v) {
+      //   return String.prototype.charCodeAt.call(v);
+      // };
+      // var isPalindrome = function(s) {
+      //   let str = '';
+      //   let stack = new Stack();
+      //   let arr = s.toLowerCase().split('');
+      //   for (let i = 0; i < arr.length; i++) {
+      //     let code = getCharCode(arr[i]);
+      //     if ((code > 'a' && code < 'z') || (code > '0' && code < '9')) {
+      //       str += arr[i];
+      //       stack.push(arr[i]);
+      //     }
+      //   }
+
+      //   let result = '';
+      //   while (!stack.isEmpty) {
+      //     result += stack.pop();
+      //   }
+      //   return result === str;
+      // };
+
+      // 对撞指针
+      // var isPalindrome = function(v) {
+      //   let str = v.replace(/[^\w]/g, '').toLowerCase();
+      //   for (let i = 0, j = str.length - 1; i < j; i++, j--) {
+      //     if (str[i] !== str[j]) {
+      //       return false;
+      //     }
+      //   }
+      //   return true;
+      // };
+
+       let str = 'ac,a r*Aca'
+      // Js原生方法
+      var isPalindrome = function(s) {
+        let str = s.replace(/[^\w]/g, '').toLowerCase();
+        let newStr = str.split('').reverse().join('');
+        return newStr === str;
+      };
+      console.log(isPalindrome(str));
+    </script>
+  </body>
+</html>
