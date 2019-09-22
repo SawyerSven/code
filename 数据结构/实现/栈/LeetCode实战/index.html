@@ -5,12 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
-    <a href="https://leetcode-cn.com/problems/valid-parentheses/">leetCode20</a>
-    <a href="https://leetcode-cn.com/problems/min-stack/">leetCode 155</a>
+    <p>
+      <a href="https://leetcode-cn.com/problems/valid-parentheses/"
+        >leetCode20</a
+      >
+    </p>
+    <p>
+      <a href="https://leetcode-cn.com/problems/min-stack/">leetCode 155</a>
+    </p>
+    <p>
+      <a
+        href="https://leetcode-cn.com/problems/remove-all-adjacent-duplicates-in-string/"
+        >leetCode 1047</a
+      >
+    </p>
+    <p>
+      <a href="https://leetcode-cn.com/problems/baseball-game/submissions/"
+        >LeetCode 682</a
+      >
+    </p>
+
+    <p>
+      <a href="https://leetcode-cn.com/problems/backspace-string-compare/">
+        leetCode844</a
+      >
+    </p>
+    <p><a href="https://leetcode-cn.com/problems/evaluate-reverse-polish-notation/">LeetCode 150</a></p>
   </head>
   <body>
     <script src="../index.js"></script>
-    <!-- <script>
+    <!--  <script>
       // leetCode20
       // 用例
 
@@ -63,7 +87,7 @@
       console.log(isValid(str2));
       console.log(isValid(str3));
     </script> -->
-    <script>
+    <!--  <script>
       // leetCode 155 最小栈
 
       /**
@@ -84,7 +108,7 @@
        * 时间复杂度：O(n)
        * 空间复杂度：O(n)
        */
- 
+
       class MinStack {
         constructor() {
           this.data = [];
@@ -125,6 +149,170 @@
       minStack.pop();
       console.log(minStack.top());
       console.log(minStack.getMin());
-    </script>
+    </script> -->
+    <!--  <script>
+      // leetCode 1047
+      /**
+       * * 此题思路同判断配对括号
+       */
+      let str = 'abbaccba';
+      var removeDuplicates = function(s) {
+        let str = s.replace(/[^\w]/g, '').toLowerCase();
+        let stack = [];
+        for (let i = 0; i < s.length; i++) {
+          if (!stack.length) {
+            stack.push(s[i]);
+          } else {
+            if (stack[stack.length - 1] === s[i]) {
+              stack.pop();
+            } else {
+              stack.push(s[i]);
+            }
+          }
+        }
+        return stack.join('');
+      };
+
+      console.log(removeDuplicates(str));
+    </script> -->
+    <!--  <script>
+      // leetcode 682
+
+      /**
+       * * 解题思路：
+       * * 本题的题干很清晰，输入值有四种类型分别任:数字，C,D,+
+       * * 使用栈解题：遍历字符串,根据不同类型进行相应的操作：
+       * * - 如果是数字，则直接将数字压入栈中
+       * * - 如果是'D',则将当前栈顶(peek)的值*2后压入栈中
+       * * - 如果是'C',并且栈不为空，则将当前栈顶元素(peek)弹出(pop)
+       * * - 如果是'+'，则将当前的栈顶元素(peek)出栈并保存，然后将出栈的栈顶元素和出栈后目前的栈顶元素(peek)相加，然后将之前出栈到的栈顶元素和相加后的元素依次入栈(push);
+       *
+       * * 最后返回栈内元素的的总和即为所得总分。
+       */
+      let ops = ['5', '-2', '4', 'C', 'D', '9', '+', '+'];
+
+      var calPoints = function(ops) {
+        let stack = [];
+        for (let option of ops) {
+          if (Number(option)) {
+            stack.push(Number(option));
+          } else {
+            switch (option) {
+              case 'C':
+                if (stack.length) {
+                  stack.pop();
+                }
+                break;
+              case 'D':
+                stack.push(stack[stack.length - 1] * 2);
+                break;
+              case '+':
+                let peek = Number(stack.pop());
+                let newValue;
+                if (stack.length > 1) {
+                  newValue = Number(peek + Number(stack[stack.length - 1]));
+                } else {
+                  newValue = Number(peek);
+                }
+                stack.push(peek);
+                stack.push(newValue);
+                break;
+              default:
+                console.error('invalid data');
+            }
+          }
+        }
+        let result = 0;
+        while (stack.length > 0) {
+          result += stack.pop();
+        }
+        return result;
+      };
+
+      console.log(calPoints(ops));
+    </script> -->
+    <!--  <script>
+      // leetCode 844
+
+      // S，T两个字符串，#代表退格。判断是否相等
+
+      // 两个栈，一个栈存放S，一个栈存放T
+      // 遍历遇倒字母进行入栈，遇倒#出栈当前栈顶
+      // 最后先比较两个栈的size如果相同，则进行下一步判断，否则返回false
+
+      var backspaceCompare = function(S, T) {
+        let stack1 = [];
+        let stack2 = [];
+        for (let i = 0; i < S.length; i++) {
+          if (S[i] === '#') {
+            stack1.pop();
+          } else {
+            stack1.push(S[i]);
+          }
+        }
+        for (let i = 0; i < T.length; i++) {
+          if (T[i] === '#') {
+            stack2.pop();
+          } else {
+            stack2.push(T[i]);
+          }
+        }
+        if (stack1.length !== stack2.length) return false;
+        while (stack1.length) {
+          if (stack1.pop() !== stack2.pop()) {
+            return false;
+          }
+        }
+        return true;
+      };
+
+      console.log(backspaceCompare('ab##', 'c#d#'));
+    </script> -->
+    <!--  <script>
+      // leetCode 150逆波兰表达式求值
+
+      // 逆波兰表达式：传统的四则运算为 a+b = c，逆波兰表达式可以理解为 ab+ = 3
+      // 这道题在LeetCode是中等，但实际上应该属于简单题
+      // 定义一个用来做四则运算的函数
+      // 遍历数组，遇倒数字直接push进栈
+      // 遇倒运算符则将数组的peek和前一个元素pop出来传入函数进行计算，将计算的结果push进栈
+      // 最终栈内唯一的元素就是我们要求的值
+      let arr = ['0', '3', '/'];
+
+      function chooseCaculation(num1, num2, cacu) {
+        switch (cacu) {
+          case '+':
+            return num1 + num2;
+            break;
+          case '-':
+            return num1 - num2;
+            break;
+          case '*':
+            return num1 * num2;
+            break;
+          case '/':
+            return parseInt(num1 / num2);
+            break;
+          default:
+            console.error('invalid value');
+            break;
+        }
+      }
+
+      var evalRPN = function(tokens) {
+        let stack = [];
+        for (let item of tokens) {
+          if (item !== '*' && item !== '-' && item !== '+' && item !== '/') {
+            stack.push(item);
+          } else {
+            let top = Number(stack.pop());
+            let prev = Number(stack.pop());
+            stack.push(chooseCaculation(prev, top, item));
+          }
+        }
+        return stack[stack.length - 1];
+      };
+      evalRPN(arr);
+    </script> -->
   </body>
 </html>
