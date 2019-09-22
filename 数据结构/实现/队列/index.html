@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>队列</title>
+  </head>
+  <body>
+    <script src="./index.js"></script>
+    <script>
+      class RecentCounter {
+        constructor(params) {
+          this.queue = new Queue();
+        }
+        ping(item) {
+          this.queue.enqueue(item);
+          while (queue.front < item - 3000) {
+            this.queue.dequeue();
+          }
+          return this.queue.size;
+        }
+      }
+      let queue = new Queue();
+
+      queue.enqueue(1);
+
+      queue.enqueue(2);
+
+      queue.enqueue(3);
+
+      console.log(queue.size);
+
+      console.log(queue.front);
+      queue.dequeue();
+
+      console.log(queue.size);
+
+      console.log(queue.front);
+
+      console.log(queue.back);
+    </script>
+  </body>
+</html>

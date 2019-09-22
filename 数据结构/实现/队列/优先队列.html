@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="index.js"></script>
+    <script>
+      class PriorityQueue extends Queue {
+        constructor(params) {
+          super();
+        }
+        enqueue(item, priority) {
+          const queueElement = { item, priority };
+          if (super.isEmpty) {
+            this.data.push(queueElement);
+          } else {
+            const preIndex = this.data.findIndex(
+              v => queueElement.priority > v.priority
+            );
+            if (preIndex > -1) {
+              this.data.splice(preIndex, 0, queueElement);
+            } else {
+              this.data.push(queueElement);
+            }
+          }
+        }
+      }
+
+      let queue = new PriorityQueue();
+      console.log(queue);
+      queue.enqueue('孙思远', 10);
+      queue.enqueue('张丽莎', 9);
+      queue.enqueue('阿辉', 8);
+      queue.enqueue('阿特', 7);
+      queue.enqueue('帅', 8);
+      console.log(queue);
+    </script>
+  </body>
+</html>
