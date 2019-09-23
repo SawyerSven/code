@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Switch</title>
+  </head>
+  <body>
+    <script>
+      let str = '10';
+      switch (str) {
+        case 10:
+          console.log('数字10');
+        case '10':
+          console.log('字符串10');
+      }
+
+      let num = 10;
+      switch (num) {
+        case 10:
+          console.log('数字10');
+        case '10':
+          console.log('字符串10');
+        default:
+          console.log('未匹配到任何值');
+      }
+    </script>
+  </body>
+</html>
