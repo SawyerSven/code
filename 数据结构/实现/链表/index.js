@@ -7,7 +7,8 @@ class Node {
 
 class LinkedList {
   constructor() {
-    this.head = new Node('head'); // 头节点
+    let head = new Node('head');
+    this.head = head;
     this.length = 0;
   }
   findIndex(element) {
@@ -97,3 +98,10 @@ class LinkedList {
     return string;
   }
 }
+
+var ccc = new LinkedList();
+ccc.append(1);
+
+ccc.append(2);
+
+ccc.append(3);
