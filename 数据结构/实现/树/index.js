@@ -52,7 +52,7 @@ class Tree {
       child.parent = parent;
     } else {
       //没找到，报错：没这个爹
-      throw new Error("Cannot add node to a non-existent parent.");
+      throw new Error('Cannot add node to a non-existent parent.');
     }
   }
   remove(node, parent, traversal) {
@@ -75,14 +75,14 @@ class Tree {
       //找着了吗
       if (index === undefined) {
         //妹找着
-        throw new Error("Node to remove does not exist.");
+        throw new Error('Node to remove does not exist.');
       } else {
         //找着了，干掉，提头
         childToRemove = parent.children.splice(index, 1);
       }
     } else {
       //爹不存在，报错
-      throw new Error("Parent does not exist.");
+      throw new Error('Parent does not exist.');
     }
     //拿头交差
     return childToRemove;
@@ -90,24 +90,24 @@ class Tree {
 }
 
 //  --one deep:0 <root>
-var tree = new Tree("one");
+var tree = new Tree('one');
 
 /*  --one deep:0 <root>
       --two deep:1 */
-tree._root.children.push(new Node("two"));
+tree._root.children.push(new Node('two'));
 tree._root.children[0].parent = tree;
 
 /*  --one deep:0 <root>
       --two   deep:1
       --three deep:1 */
-tree._root.children.push(new Node("three"));
+tree._root.children.push(new Node('three'));
 tree._root.children[1].parent = tree;
 
 /*  --one deep:0 <root>
       --two   deep:1
       --three deep:1 
       --four  deep:1*/
-tree._root.children.push(new Node("four"));
+tree._root.children.push(new Node('four'));
 tree._root.children[2].parent = tree;
 
 /*  --one deep:0 <root>
@@ -115,7 +115,7 @@ tree._root.children[2].parent = tree;
         --five deep:2
       --three deep:1
       --four  deep:1*/
-tree._root.children[0].children.push(new Node("five"));
+tree._root.children[0].children.push(new Node('five'));
 tree._root.children[0].children[0].parent = tree._root.children[0];
 
 /*  --one deep:0 <root>
@@ -124,7 +124,7 @@ tree._root.children[0].children[0].parent = tree._root.children[0];
         --six  deep:2
       --three deep:1
       --four  deep:1*/
-tree._root.children[0].children.push(new Node("six"));
+tree._root.children[0].children.push(new Node('six'));
 tree._root.children[0].children[1].parent = tree._root.children[0];
 
 /*  --one deep:0 <root>
@@ -134,7 +134,7 @@ tree._root.children[0].children[1].parent = tree._root.children[0];
       --three deep:1
       --four  deep:1
         --seven deep:2*/
-tree._root.children[2].children.push(new Node("seven"));
+tree._root.children[2].children.push(new Node('seven'));
 tree._root.children[2].children[0].parent = tree._root.children[2];
 
 tree.traverseBF(data => {
